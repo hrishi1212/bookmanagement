@@ -7,9 +7,21 @@ import {REST_URL} from './url.service';
 @Injectable()
 
 export class BookService{
-
+name = localStorage.getItem("addedBy");
 constructor(private http: Http) {}
+getbookdetailsname(){
+    
+    return this.http.get(REST_URL + "/books/1/"+this.name).map((response: Response) =>{
+    console.log (response.json());
+    return <BookResponse[]>response.json()}
+    
+)
+
+
+}
+
 getbookdetails(){
+    console.log(this.name);
     return this.http.get(REST_URL + "/books").map((response: Response) =>{
     console.log (response.json());
     return <BookResponse[]>response.json()}
@@ -26,5 +38,12 @@ savebook(BookRequest : BookRequest){
 
 
 }
+updatebookComment(BookRequest :BookRequest,id){
+    return this.http.put(REST_URL + '/books/'+id,BookRequest).map((response: Response) =>{
+        console.log (response.json());
+        }
+}
+
+
 
 }

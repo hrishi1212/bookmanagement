@@ -10,42 +10,35 @@ import {BookService} from '../service/book.service';
 import { HttpModule } from '@angular/http';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
     templateUrl: 'table.component.html',
+    encapsulation: ViewEncapsulation.None,
     providers:[BookService,HttpModule]
 })
 
 export class TableComponent implements OnInit{
     display: boolean = false;
     books: BookResponse[];
+    commentArray : any[];
+    BookRequest : BookRequest = new BookRequest();
     username:string;
-    selectedCar: BookResponse;
+    selectedBook: BookRequest;
     
     displayDialog: boolean;
 
     sortOptions: SelectItem[];
 
     sortKey: string;
-
+    comment:string;
     sortField: string;
 
     sortOrder: number;
    constructor(private _book: BookService) { }
     ngOnInit(){
-        // this.books = [
-        //     { ISBN: 1, bookName: 'Vin',addedBy:'2018',rating:4 },
-        //     { ISBN: 2, bookName: 'Vin',addedBy:'2018',rating:3 },
-        //     {   ISBN: 3, bookName: 'Vin',addedBy:'2018',rating:2  },
-        //     {  ISBN: 4, bookName: 'Vin',addedBy:'2018',rating:5 }
-        // ];
-        // this.sortOptions = [
-        //     {label: 'Newest First', value: '!year'},
-        //     {label: 'Oldest First', value: 'year'},
-        //     {label: 'Brand', value: 'brand'}
-        // ];
         var  userName = localStorage.getItem("addedBy");
         if(!userName){
             this.display = true;
@@ -55,12 +48,16 @@ export class TableComponent implements OnInit{
         
         
     }
-    selectCar(event: Event, car: BookResponse) {
-        this.selectedCar = car;
+    selectBook(event: Event, book: BookRequest) {
+        this.selectedBook = book;
+        console.log(this.selectedBook.ISBN);
+        
         this.displayDialog = true;
         event.preventDefault();
     }
-
+updateBook(id){
+    this.commentSave(id);
+}
     onSortChange(event) {
         let value = event.value;
 
@@ -75,11 +72,11 @@ export class TableComponent implements OnInit{
     }
     
     onDialogHide() {
-        this.selectedCar = null;
+        this.selectedBook = null;
     }
     loadallBooks(){
         this._book.getbookdetails().subscribe((books : any)=>{this.books =books;
-        console.log(this.books);
+       
         });
         
         //console.log('here'+this.products[0].name);
@@ -94,5 +91,13 @@ export class TableComponent implements OnInit{
             }else{
                 this.display= false;
             }
+        }
+
+        commentSave(id){
+           this.selectedBook.comments.push(this.commentArray);
+            this.BookRequest.addedBy = localStorage.getItem("addedBy");
+            this.BookRequest.comments = this.selectedBook.comments;
+           this._book.updatebookComment(this.BookRequest,id).subscribe(data => {this.loadallBooks();},Error => {console.log(Response)}
+         
         }
 }

@@ -10,11 +10,12 @@ import {BookRequest} from '../domain/book.request';
 import {BookResponse} from '../domain/book.response';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
-
+import { ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
     templateUrl: 'user.component.html',
+    encapsulation: ViewEncapsulation.None,
     providers:[BookService, HttpModule]
 })
 
@@ -24,11 +25,9 @@ export class UserComponent implements OnInit{
     display: boolean = false;
     books: BookResponse[];
         BookRequest : BookRequest = new BookRequest();
-        selectedCar: BookResponse;
+        selectedBook: BookResponse;
 
-        newCar: boolean;
-
-        cars: BookResponse[];
+        newBook: boolean;
 
         cols: any[];
     // tslint:disable-next-line:no-trailing-whitespace
@@ -53,7 +52,7 @@ export class UserComponent implements OnInit{
         }
     
         showDialogToAdd() {
-            this.newCar = true;
+            this.newBook = true;
             this.BookRequest = new BookRequest();
             this.displayDialog = true;
         }
@@ -64,19 +63,22 @@ export class UserComponent implements OnInit{
         }
     
         delete() {
-            let index = this.cars.indexOf(this.selectedCar);
-            this.cars = this.cars.filter((val, i) => i != index);
+            let index = this.books.indexOf(this.selectedBook);
+            this.books = this.books.filter((val, i) => i != index);
             this.displayDialog = false;
         }
         saveBook(){
             //local storage to be add
-              
+              this.BookRequest.addedBy = localStorage.getItem("addedBy");
                
-              this._book.savebook(this.BookRequest).subscribe(data => {this.loadallBooks();},Error => {alert("failed while adding product details")})
+              this._book.savebook(this.BookRequest).subscribe(data => {this.loadallBooks();},Error => {console.log(Response)}
+            
+            
+            )
           }
           loadallBooks(){
-            this._book.getbookdetails().subscribe((books : any)=>{this.books =books;
-            console.log(this.books);
+            this._book.getbookdetailsname().subscribe((books : any)=>{this.books =books;
+    
             });
             
             //console.log('here'+this.products[0].name);
