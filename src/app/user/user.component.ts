@@ -20,6 +20,7 @@ import {RatingModule} from 'primeng/rating';
 
 export class UserComponent implements OnInit{
     displayDialog: boolean;
+    username:string;
     display: boolean = false;
     books: BookResponse[];
         BookRequest : BookRequest = new BookRequest();

@@ -21,6 +21,7 @@ import {RatingModule} from 'primeng/rating';
 export class TableComponent implements OnInit{
     display: boolean = false;
     books: BookResponse[];
+    username:string;
     selectedCar: BookResponse;
     
     displayDialog: boolean;

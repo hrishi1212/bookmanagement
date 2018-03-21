@@ -195,7 +195,7 @@ But that's the difference in our opinions.</textarea>
         </div>
     </div> -->
 
-    <p-table [columns]="cols" [value]="books" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+    <p-table [columns]="cols" [value]="books" selectionMode="single" [(selection)]="selectedCar"  [paginator]="true" [rows]="15">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>ISBN</th>
