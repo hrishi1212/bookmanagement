@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="fa-search" (click)="selectBook($event, book)"></button>
+            <button pButton type="button" icon="fa-search" (click)="selectBook($event, book)">search here</button>
         </div>
     </div>
 </ng-template>
@@ -51,7 +51,7 @@
             <img src="{{book.imgUrl}}" width="60">
             <div class="car-detail">{{book.addedBy}} - {{book.rating}}</div>
             <hr class="ui-widget-content" style="border-top:0">
-            <button pButton type="button" icon="fa-search" (click)="selectBook($event, book)" style="margin-top:0"></button>
+            <button pButton type="button" icon="fa-search" (click)="selectBook($event, book)" style="margin-top:0">Click to know more</button>
         </p-panel>
     </div>
 </ng-template>
@@ -83,8 +83,8 @@
                </div>
 </div>
 <p-footer>
-        <button type="button" pButton icon="fa-check" (click)="updateBook(selectedBook.ISBN)" label="Yes"></button>
-        <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+        <button type="button" pButton icon="fa-check" (click)="updateBook(selectedBook.ISBN)" label="Yes">YES</button>
+        <button type="button" pButton icon="fa-close" (click)="display=false" label="No">NO</button>
     </p-footer>
 </p-dialog>
 
@@ -104,7 +104,7 @@
             </div>
         </div>
         <p-footer>
-            <button type="button" pButton icon="fa-check" (click)="savetolocal(username)" label="Yes"></button>
-            <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+            <button type="button" pButton icon="fa-check" (click)="savetolocal(username)" label="Yes">Yes</button>
+            <button type="button" pButton icon="fa-close" (click)="display=false" label="No">NO</button>
         </p-footer>
 </p-dialog>

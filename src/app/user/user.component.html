@@ -21,7 +21,7 @@
     
         <ng-template pTemplate="summary" let-rowData>
             <div style="text-align:left">
-                <button type="button" pButton icon="fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+                <button type="button"  icon="fa-plus" (click)="showDialogToAdd()" label="Add">ADD</button>
             </div>
         </ng-template>
         
@@ -67,8 +67,7 @@
         </div>
         <p-footer>
             <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+                <button type="button"  icon="fa-check" (click)="save()" label="Save">SAVE</button>
             </div>
         </p-footer>
     </p-dialog>
@@ -88,7 +87,7 @@
                 </div>
             </div>
             <p-footer>
-                <button type="button" pButton icon="fa-check" (click)="savetolocal(username)" label="Yes"></button>
-                <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="savetolocal(username)" label="Yes">YES</button>
+                <button type="button" pButton icon="fa-close" (click)="display=false" label="No">NO</button>
             </p-footer>
     </p-dialog>
