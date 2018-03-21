@@ -38,12 +38,17 @@ savebook(BookRequest : BookRequest){
 
 
 }
-updatebookComment(BookRequest :BookRequest,id){
-    return this.http.put(REST_URL + '/books/'+id,BookRequest).map((response: Response) =>{
+
+updatebookComment(BookRequest :BookRequest,id)
+{
+    return this.http.put(REST_URL + '/books/'+id,BookRequest).map(
+        (response: Response) =>
+    {
         console.log (response.json());
         }
-}
-
+    )
+    }
+    
 
 
 }

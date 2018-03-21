@@ -84,6 +84,7 @@ updateBook(id){
         
             
         }
+        
         savetolocal(username){
             if(username){
                 localStorage.setItem("addedBy",username);
@@ -92,12 +93,20 @@ updateBook(id){
                 this.display= false;
             }
         }
-
         commentSave(id){
-           this.selectedBook.comments.push(this.commentArray);
-            this.BookRequest.addedBy = localStorage.getItem("addedBy");
-            this.BookRequest.comments = this.selectedBook.comments;
-           this._book.updatebookComment(this.BookRequest,id).subscribe(data => {this.loadallBooks();},Error => {console.log(Response)}
-         
-        }
+           
+            if(this.commentArray !== undefined){
+                this.selectedBook.comments.push(this.commentArray);
+            }else{
+                this.selectedBook.comments;
+            }
+            
+             this.BookRequest.addedBy = localStorage.getItem("addedBy");
+             this.BookRequest.comments = this.selectedBook.comments;
+             this.BookRequest.rating = this.selectedBook.rating;
+            this._book.updatebookComment(this.BookRequest,id).
+            subscribe(data => {this.loadallBooks();},Error => {console.log(Response)})
+          
+         }
+       
 }
