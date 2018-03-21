@@ -6,5 +6,6 @@ export class BookRequest
     addedBy: string;
     rating: number;
     imgUrl : string;
+    comments : any[];
 // tslint:disable-next-line:eofline
 }
